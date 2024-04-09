@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pokemon_app/model/list_of_pokemons.dart';
+import 'package:pokemon_app/model/list_of_pokemon.dart';
 
 import '../model/pokemon_info.dart';
 

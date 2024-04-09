@@ -1,3 +1,6 @@
+import 'package:pokemon_app/model/list_of_pokemon.dart';
+import 'package:pokemon_app/model/pokemon_info.dart';
+
 class MainState{
   const MainState();
 }
@@ -12,11 +15,11 @@ class MainStateLoading extends MainState{
 }
 
 class MainStateInfo extends MainState{
-  final String poke;
-  const MainStateInfo({required this.poke});
+  final PokemonInfo pokemonInfo;
+  const MainStateInfo({required this.pokemonInfo});
 }
 
 class MainStateList extends MainState{
-  final List<String> pokemons;
-  const MainStateList({required this.pokemons});
+  final ListOfPokemon listOfPokemon;
+  const MainStateList({required this.listOfPokemon});
 }

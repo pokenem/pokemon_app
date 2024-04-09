@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {
-  const ErrorPage({Key? key}) : super(key: key);
+  final String error;
+  const ErrorPage({Key? key, required this.error}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text(error),
+    );
   }
 }

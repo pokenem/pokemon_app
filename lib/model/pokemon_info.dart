@@ -19,5 +19,5 @@ class PokemonInfo {
   height = json['height'],
   weight = json['weight'],
   imageUrl = json['sprites']['front_default'],
-  types = (json['types'] as Iterable<dynamic>).map<String>((e) => e['name']).toList();
+  types = (json['types'] as Iterable<dynamic>).map<String>((e) => e['type']['name']).toList();
 }

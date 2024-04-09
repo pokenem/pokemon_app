@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokemon_app/ui/pages/app.dart';
+import 'package:pokemon_app/ui/app.dart';
 
 void main() {
-  runApp(App());
+  runApp(MaterialApp(home:App()));
 }

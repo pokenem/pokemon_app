@@ -13,8 +13,8 @@ class Pokemon {
 }
 
 class ListOfPokemon {
-  String prevUrl;
-  String nextUrl;
+  String? prevUrl;
+  String? nextUrl;
   List<Pokemon> list;
 
   ListOfPokemon({
