@@ -11,7 +11,7 @@ class APIProvider {
 
   Future<ListOfPokemon> getListOfPokemon(String url) async{
     Response resp = await _dio.get(url);
-    ListOfPokemon res = ListOfPokemon.fromJson(resp.data);
+    ListOfPokemon res = ListOfPokemon.fromJson(resp.data, url);
     return res;
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_app/data/api_provider.dart';
+import 'package:pokemon_app/data/persistence_manager.dart';
 import 'package:pokemon_app/ui/pages/error_page.dart';
 import 'package:pokemon_app/ui/pages/loading_page.dart';
 import 'package:pokemon_app/ui/pages/pokemon_info_page.dart';
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MainBloc>(
-      create: (context) => MainBloc(APIProvider())..init(),
+      create: (context) => MainBloc(APIProvider(), PersistenceManager())..init(),
       child: BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
           if (state is MainStateLoading) {
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
           } else if (state is MainStateList) {
             return MainPage(list: state.listOfPokemon);
           } else if (state is MainStateInfo) {
-            return PokemonInfoPage(pokemonInfo: state.pokemonInfo);
+            return PokemonInfoPage(pokemonInfo: state.pokemonInfo, backUrl: state.backUrl);
           }
           return ErrorPage(
             error: 'Что-то пошло не так',

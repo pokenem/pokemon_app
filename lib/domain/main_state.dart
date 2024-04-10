@@ -16,7 +16,8 @@ class MainStateLoading extends MainState{
 
 class MainStateInfo extends MainState{
   final PokemonInfo pokemonInfo;
-  const MainStateInfo({required this.pokemonInfo});
+  final String backUrl;
+  const MainStateInfo({required this.pokemonInfo, required this.backUrl});
 }
 
 class MainStateList extends MainState{
