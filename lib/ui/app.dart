@@ -23,14 +23,16 @@ class App extends StatelessWidget {
           if (state is MainStateLoading) {
             return LoadingPage();
           } else if (state is MainStateError) {
-            return ErrorPage(error: state.error);
+            return ErrorPage(error: state.error, retryUrl: state.retryUrl, retryName: state.retryName);
           } else if (state is MainStateList) {
             return MainPage(list: state.listOfPokemon);
           } else if (state is MainStateInfo) {
             return PokemonInfoPage(pokemonInfo: state.pokemonInfo, backUrl: state.backUrl);
           }
           return ErrorPage(
-            error: 'Что-то пошло не так',
+            error: 'Something went wrong',
+            retryUrl: APIProvider.baseUrl,
+            retryName: 'main',
           );
         },
       ),

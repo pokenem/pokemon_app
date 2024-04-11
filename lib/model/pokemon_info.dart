@@ -30,7 +30,23 @@ class PokemonInfo {
       'sprites': {
         'front_default': imageUrl,
       },
-      'types': types.map((e) => {'type': {'name': e}}).toList(),
+      'types': types
+          .map((e) => {
+                'type': {'name': e}
+              })
+          .toList(),
     };
+  }
+
+  String getStringFromTypes() {
+    String res = '';
+    for (int i = 0; i < types.length; i++) {
+      if (i == types.length - 1) {
+        res += types[i];
+      } else {
+        res += types[i] + ", ";
+      }
+    }
+    return res;
   }
 }

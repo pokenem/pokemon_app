@@ -40,6 +40,8 @@ dependencies:
   dio: ^5.4.2+1
   hive: ^2.2.3
   path_provider: ^2.1.2
+  cached_network_image: ^3.3.1
+  gif: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -57,7 +59,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+    - assets/
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

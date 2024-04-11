@@ -19,7 +19,7 @@ class MainBloc extends Cubit<MainState> {
       try {
         list = await _apiProvider.getListOfPokemon(APIProvider.baseUrl);
       } catch (error) {
-        emit(MainStateError(error: error.toString()));
+        emit(MainStateError(error: 'Network error', retryUrl: APIProvider.baseUrl, retryName: 'main',));
         return;
       }
       _persistenceManager.addListOfPokemon(APIProvider.baseUrl, list);
@@ -38,7 +38,7 @@ class MainBloc extends Cubit<MainState> {
       try {
         list = await _apiProvider.getListOfPokemon(url);
       } catch (error) {
-        emit(MainStateError(error: error.toString()));
+        emit(MainStateError(error: 'Network error',retryUrl: url, retryName: 'main'));
         return;
       }
       _persistenceManager.addListOfPokemon(url, list);
@@ -47,14 +47,19 @@ class MainBloc extends Cubit<MainState> {
   }
 
   void loadInfo(String url) async {
-      final currentUrl = (state as MainStateList).listOfPokemon.currentUrl;
+    String currentUrl = '';
+    if(state is MainStateList) {
+      currentUrl = (state as MainStateList).listOfPokemon.currentUrl;
+    } else if(state is MainStateError){
+      currentUrl = (state as MainStateError).retryUrl;
+    }
     emit(MainStateLoading());
     PokemonInfo? poke = await _persistenceManager.getPokemonInfo(url);
     if (poke == null) {
       try {
         poke = await _apiProvider.getPokemonInfo(url);
       } catch (error) {
-        emit(MainStateError(error: error.toString()));
+        emit(MainStateError(error: 'Network error', retryUrl: url, retryName: 'info'));
         return;
       }
       _persistenceManager.addPokemonInfo(url, poke);

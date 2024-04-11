@@ -14,11 +14,26 @@ class MainPage extends StatelessWidget {
     print(list.prevUrl);
     print(list.nextUrl);
     return Scaffold(
-      appBar: AppBar(title: Text('PokemonApp'),
-      actions: [
-        list.prevUrl != 'null' ? IconButton(onPressed: (){BlocProvider.of<MainBloc>(context).loadMain(list.prevUrl!);}, icon: Icon(Icons.arrow_back_rounded)) : Container(),
-        list.nextUrl != 'null' ? IconButton(onPressed: (){BlocProvider.of<MainBloc>(context).loadMain(list.nextUrl!);}, icon: Icon(Icons.arrow_forward_rounded)) : Container(),
-      ],),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text('PokemonApp'),
+        actions: [
+          list.prevUrl != 'null'
+              ? IconButton(
+                  onPressed: () {
+                    BlocProvider.of<MainBloc>(context).loadMain(list.prevUrl!);
+                  },
+                  icon: Icon(Icons.arrow_back_rounded))
+              : Container(),
+          list.nextUrl != 'null'
+              ? IconButton(
+                  onPressed: () {
+                    BlocProvider.of<MainBloc>(context).loadMain(list.nextUrl!);
+                  },
+                  icon: Icon(Icons.arrow_forward_rounded))
+              : Container(),
+        ],
+      ),
       body: SafeArea(
         child: GridView.count(
           crossAxisCount: 2,
@@ -28,8 +43,31 @@ class MainPage extends StatelessWidget {
               onTap: () {
                 BlocProvider.of<MainBloc>(context).loadInfo(list.list[index].url);
               },
-              child: Center(
-                child: Text(list.list[index].name),
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      list.list[index].name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(16.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

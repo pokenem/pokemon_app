@@ -7,7 +7,9 @@ class MainState{
 
 class MainStateError extends MainState{
   final String error;
-  const MainStateError({required this.error});
+  final String retryUrl;
+  final String retryName;
+  const MainStateError({required this.error, required this.retryUrl, required this.retryName});
 }
 
 class MainStateLoading extends MainState{
