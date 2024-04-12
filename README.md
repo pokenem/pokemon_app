@@ -1,16 +1,12 @@
 # pokemon_app
 
-A new Flutter project.
+An application showing information about Pokemon
 
-## Getting Started
+## Screenshots
+![image](https://github.com/pokenem/pokemon_app/assets/73646157/40afe86a-a944-41c8-8dc6-f8f8bebb4886)
+![image](https://github.com/pokenem/pokemon_app/assets/73646157/4f0c9d49-b1a3-4b6c-8946-0ad6690cb42f)
+![image](https://github.com/pokenem/pokemon_app/assets/73646157/a78ed5bc-42dc-4c29-bd03-34381641c5ee)
 
-This project is a starting point for a Flutter application.
+### Download link
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+apk: [poke](https://disk.yandex.ru/d/afO53NPmKjYq_g)
