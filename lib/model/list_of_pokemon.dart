@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Pokemon {
   String name;
   String url;
@@ -38,7 +36,9 @@ class ListOfPokemon {
       : prevUrl = json['previous'] ?? 'null',
         nextUrl = json['next'] ?? 'null',
         currentUrl = url,
-        list = (json['results'] as Iterable<dynamic>).map<Pokemon>((e) => Pokemon.fromJson(e)).toList();
+        list = (json['results'] as Iterable<dynamic>)
+            .map<Pokemon>((e) => Pokemon.fromJson(e))
+            .toList();
 
   Map<String, Object> toJson() {
     return {

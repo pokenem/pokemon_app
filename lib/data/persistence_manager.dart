@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive/hive.dart';
 
@@ -9,18 +11,19 @@ import '../model/pokemon_info.dart';
 class PersistenceManager {
   PersistenceManager();
 
-  late Box box_pages;
-  late Box box_info;
+  late Box boxPages;
+  late Box boxInfo;
 
   Future<void> openBox() async {
     var dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);
-    box_pages = await Hive.openBox("box_pages");
-    box_info = await Hive.openBox("box_info");
+    boxPages = await Hive.openBox("boxPages");
+    boxInfo = await Hive.openBox("boxInfo");
+    GetIt.I<Logger>().i('Hive initialized');
   }
 
   Future<PokemonInfo?> getPokemonInfo(String url) async {
-    final json = await box_info.get(url);
+    final json = await boxInfo.get(url);
     if (json == null) {
       return null;
     } else {
@@ -29,7 +32,7 @@ class PersistenceManager {
   }
 
   Future<ListOfPokemon?> getListOfPokemon(String url) async {
-    final json = await box_pages.get(url);
+    final json = await boxPages.get(url);
     if (json == null) {
       return null;
     } else {
@@ -37,11 +40,13 @@ class PersistenceManager {
     }
   }
 
-  Future<void> addPokemonInfo(String url, PokemonInfo pokemonInfo) async{
-    await box_info.put(url, jsonEncode(pokemonInfo.toJson()));
+  Future<void> addPokemonInfo(String url, PokemonInfo pokemonInfo) async {
+    await boxInfo.put(url, jsonEncode(pokemonInfo.toJson()));
+    GetIt.I<Logger>().i('Add PokemonInfo in Hive');
   }
 
-  Future<void> addListOfPokemon(String url, ListOfPokemon listOfPokemon) async{
-    await box_pages.put(url,jsonEncode(listOfPokemon.toJson()));
+  Future<void> addListOfPokemon(String url, ListOfPokemon listOfPokemon) async {
+    await boxPages.put(url, jsonEncode(listOfPokemon.toJson()));
+    GetIt.I<Logger>().i('Add ListOfPokemon in Hive');
   }
 }

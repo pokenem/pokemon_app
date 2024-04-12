@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class PokemonInfo {
   String name;
   int weight;
@@ -20,7 +18,9 @@ class PokemonInfo {
         height = json['height'],
         weight = json['weight'],
         imageUrl = json['sprites']['front_default'],
-        types = (json['types'] as Iterable<dynamic>).map<String>((e) => e['type']['name']).toList();
+        types = (json['types'] as Iterable<dynamic>)
+            .map<String>((e) => e['type']['name'])
+            .toList();
 
   Map<String, Object> toJson() {
     return {
@@ -44,7 +44,7 @@ class PokemonInfo {
       if (i == types.length - 1) {
         res += types[i];
       } else {
-        res += types[i] + ", ";
+        res += "${types[i]}, ";
       }
     }
     return res;
